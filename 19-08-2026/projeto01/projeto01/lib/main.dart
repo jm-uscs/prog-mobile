@@ -31,7 +31,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _formKey = GLobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   final _nomeCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
@@ -121,7 +121,27 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 16),
 
               const _SectionHeader(titulo: 'Dados do Aluno'),
-              Form
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _nomeCtrl,
+                      decoration: const InputDecoration(
+                        labelText: 'Nome',
+                        hintText: 'Ex.: Maria Silva',
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                      ),
+                      TextInputAction: TextInputAction.next,
+                      validator: (v) {
+                        final value = v?trim() ?? '';
+
+                      }
+                    )
+                  ],
+                )
+              )
             ]
           )
         )
