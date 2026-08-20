@@ -90,7 +90,7 @@ class _TelaCalculadoraState extends State<TelaCalculadora> {
     super.dispose();
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Calculadora')),
