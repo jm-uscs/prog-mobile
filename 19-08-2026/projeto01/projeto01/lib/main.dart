@@ -3,6 +3,13 @@ import 'package:flutter/services.dart';
 
 import 'model/Aluno.dart';
 
+/*
+Obs.: Para rodar local eu tive que fazer mais alguns processos 
+relacionados ao android studio, como ativar as ferramentas de
+command line do android. Não sei se fiz um processo diferente do
+demonstrado em aula.
+*/
+
 void main() {
   runApp(const Aula2App());
 }
@@ -240,10 +247,172 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildExemploLayout() {
-    
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const _SectionHeader(titulo: 'Exemplo rápido de layout'),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.indigo.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Text('A'),
+              ),
+            ),
+            const SizedBox(width: 8),
+
+            Expanded(
+              child: Container(
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.indigo.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Text('B'),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Container(
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.indigo.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Text('C'),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
+  Widget _buildCardPrevia() {
+    final nome = _nomeCtrl.text.trim().isEmpty ? '-' : _nomeCtrl.text.trim();
+    final email = _emailCtrl.text.trim().isEmpty ? '-' : _emailCtrl.text.trim();
+    final idade = _idadeCtrl.text.trim().isEmpty ? '-' : _idadeCtrl.text.trim();
+    final curso = _cursoSelecionado ?? '-';
+    final novidades = _receberNovidades ? 'Sim' : 'Não';
 
+    return Card(
+      elevation: 0,
+      color: Colors.indigo.withValues(alpha: 0.04),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            _linhaPrevia('Nome', nome),
+            _linhaPrevia('E-mail', email),
+            _linhaPrevia('Idade', idade.toString()),
+            _linhaPrevia('Curso', curso),
+            _linhaPrevia('Receber novidades?', novidades),
+          ],
+        ),
+      ),
+    );
+  }
 
+  Widget _linhaPrevia(String rotulo, String valor) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Text(
+              rotulo,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(child: Text(valor)),
+        ],
+      ),
+    );
+  }
+}
 
+class _SectionHeader extends StatelessWidget {
+  final String titulo;
+  const _SectionHeader({required this.titulo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(titulo, style: Theme.of(context).textTheme.titleMedium),
+    );
+  }
+}
+
+class ResumoPage extends StatelessWidget {
+  final Aluno aluno;
+  const ResumoPage({super.key, required this.aluno});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Resumo do Cadastro')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Card(
+          elevation: 0,
+          color: Colors.green.withValues(alpha: 0.05),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                _linha('Nome', aluno.nome),
+                _linha('E-mail', aluno.email),
+                _linha('Idade', aluno.idade.toString()),
+                _linha('Curso', aluno.curso),
+                _linha(
+                  'Receber novidades?',
+                  aluno.receberNovidades ? 'Sim' : 'Não',
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Voltar'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _linha(String rotulo, String valor) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Text(
+              rotulo,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(child: Text(valor)),
+        ],
+      ),
+    );
+  }
 }
