@@ -21,6 +21,9 @@ class Aula2App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Aula 2 - Form + Layout',
+      /*Creio que era assim que o prof mostrou em sala como
+      remover a bandeirinha de debug*/
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
       home: const HomePage(),
     );
