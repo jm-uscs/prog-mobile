@@ -14,10 +14,7 @@ class Aula2App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Aula 2 - Form + Layout',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.indigo
-      ),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
       home: const HomePage(),
     );
   }
@@ -25,7 +22,7 @@ class Aula2App extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -41,12 +38,12 @@ class _HomePageState extends State<HomePage> {
   bool _receberNovidades = true;
 
   final List<String> _cursos = const [
-    'Analise e Desenvolvimento de Sistemas',
+    'Analise e Desenvolv. de Sistemas',
     'Engenharia de Software',
     'Ciência da Computação',
     'Sistemas de Informação',
     'Jogos Digitais',
-    'Outro'
+    'Outro',
   ];
 
   @override
@@ -88,30 +85,23 @@ class _HomePageState extends State<HomePage> {
       nome: _nomeCtrl.text.trim(),
       email: _emailCtrl.text.trim(),
       idade: idade,
-      curso: _cursoSelecionado ?? '',
+      curso: _cursoSelecionado!,
       receberNovidades: _receberNovidades,
     );
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Cadastro validado!'),
-      ),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Cadastro validado!')));
 
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => ResumoPage(aluno: aluno),
-      ),
+      MaterialPageRoute(builder: (_) => ResumoPage(aluno: aluno)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Aula 2 - Formulário e Layout'),
-      ),
+      appBar: AppBar(title: const Text('Aula 2 - Formulário e Layout')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -133,24 +123,127 @@ class _HomePageState extends State<HomePage> {
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(),
                       ),
-                      TextInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.next,
                       validator: (v) {
-                        final value = v?trim() ?? '';
-
-                      }
-                    )
+                        final value = v?.trim() ?? '';
+                        if (value.isEmpty) return 'Informe o nome';
+                        if (value.length < 3) {
+                          return 'Mínimo de 3 caracteres';
+                        }
+                        return null;
+                      },
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 12),
+                    //E-mail
+                    TextFormField(
+                      controller: _emailCtrl,
+                      decoration: const InputDecoration(
+                        labelText: 'E-mail',
+                        hintText: 'Ex.: maria@examplo.com',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      validator: _validarEmail,
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 12),
+                    //Idade
+                    TextFormField(
+                      controller: _idadeCtrl,
+                      decoration: const InputDecoration(
+                        labelText: 'Idade',
+                        hintText: 'Ex.: 20',
+                        prefixIcon: Icon(Icons.numbers),
+                        border: OutlineInputBorder(),
+                      ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      textInputAction: TextInputAction.next,
+                      validator: (v) {
+                        final value = v?.trim() ?? '';
+                        if (value.isEmpty) return 'Informe a idade';
+                        final n = int.tryParse(value);
+                        if (n == null) return 'Apenas números';
+                        if (n < 0 || n > 120) return 'Idade fora do intervalo';
+                        return null;
+                      },
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 12),
+                    //Curso
+                    DropdownButtonFormField<String>(
+                      value: _cursoSelecionado,
+                      items: _cursos
+                          .map(
+                            (c) => DropdownMenuItem(value: c, child: Text(c)),
+                          )
+                          .toList(),
+                      decoration: const InputDecoration(
+                        labelText: 'Curso',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.school),
+                      ),
+                      validator: (v) => v == null ? 'Selecione o curso' : null,
+                      onChanged: (v) => setState(() {
+                        _cursoSelecionado = v;
+                      }),
+                    ),
+                    const SizedBox(height: 4),
+                    //SWITCH
+                    SwitchListTile(
+                      title: const Text(
+                        'Receber novidades por e-mail? (opcional)',
+                      ),
+                      value: _receberNovidades,
+                      onChanged: (v) => setState(() {
+                        _receberNovidades = v;
+                      }),
+                    ),
                   ],
-                )
-              )
-            ]
-          )
-        )
-      )
-    );
+                ),
+              ),
 
+              const SizedBox(height: 12),
+
+              const _SectionHeader(titulo: 'Prévia (atualizada em tempo real)'),
+              _buildCardPrevia(),
+
+              const SizedBox(height: 12),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: _limpar,
+                      icon: const Icon(Icons.refresh),
+                      label: const Text('Limpar'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: _salvar,
+                      icon: const Icon(Icons.save),
+                      label: const Text('Salvar e ver resumo'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExemploLayout() {
+    
+  }
 
 
 
 
 }
-
