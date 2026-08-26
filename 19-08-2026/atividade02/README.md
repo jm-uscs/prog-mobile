@@ -1,3 +1,3 @@
-# projeto02
+# atividade02
 
 A new Flutter project.
