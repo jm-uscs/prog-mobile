@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Telacirculo extends StatelessWidget{
-  const Telacirculo({super.key});
+class TelaCirculoScreen extends StatelessWidget{
+  const TelaCirculoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

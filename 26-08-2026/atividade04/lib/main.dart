@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'screens/tela_circulo.dart';
+import 'screens/tela_losango.dart';
+import 'screens/tela_quadrado.dart';
+import 'screens/tela_retangulo.dart';
+import 'screens/tela_trapezio.dart';
+import 'screens/tela_triangulo.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -9,8 +16,134 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.deepPurple, useMaterial3: false),
+      home: const HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Tela Principal')),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Escolha uma opção'),
+
+              const SizedBox(height: 50),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaCirculoScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Circulo'),
+              ),
+
+              const SizedBox(height: 50),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaLosangoScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Losango'),
+              ),
+
+              const SizedBox(height: 50),
+              
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaQuadradoScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Quadrado'),
+              ),
+
+              const SizedBox(height: 50),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaRetanguloScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Retangulo'),
+              ),
+
+              const SizedBox(height: 50),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaTrapezioScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Trapezio'),
+              ),
+
+              const SizedBox(height: 50),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaTrianguloScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Tela Triangulo'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

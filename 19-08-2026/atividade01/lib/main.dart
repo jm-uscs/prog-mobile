@@ -111,7 +111,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Aula 2 - Formulário e Layout')),
+      appBar: AppBar(
+        title: const Text('Aula 2 - Formulário e Layout')
+        ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
