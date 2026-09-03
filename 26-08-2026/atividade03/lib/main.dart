@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.amber, useMaterial3: false),
+      theme: ThemeData(primarySwatch: Colors.deepPurple, useMaterial3: false),
       home: const HomeScreen(),
     );
   }
@@ -34,7 +34,14 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Escolha uma opção'),
+              const Text(
+                'Escolha uma opção',
+                style: TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.deepPurple,
+                ),
+              ),
               const SizedBox(height: 50),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -66,6 +73,8 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: const Text('Tela 02'),
               ),
+
+              const SizedBox(height: 50),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),

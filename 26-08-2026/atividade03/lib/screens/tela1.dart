@@ -6,13 +6,23 @@ class Tela1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Projeto 2508')),
+      appBar: AppBar(title: const Text('Tela 01')),
       body: Center(
         child: Padding(
           padding: const EdgeInsetsGeometry.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [const Text('Tela01'), const SizedBox(height: 20)],
+            children: [
+              const Text(
+                'Tela 01',
+                style: TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),
