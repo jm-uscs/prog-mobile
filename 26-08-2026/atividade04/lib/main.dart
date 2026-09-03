@@ -37,7 +37,12 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Escolha uma opção'),
+              const Text('Escolha uma opção',
+              style: TextStyle(
+                fontSize: 32.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.deepPurple,
+              ),),
 
               const SizedBox(height: 50),
 

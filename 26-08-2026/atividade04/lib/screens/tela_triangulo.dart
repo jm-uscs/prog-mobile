@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+//HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
+import 'package:atividade04/models/model_poligono.dart';
 
 // ============================================================================
 // TELA
 // ============================================================================
-class TrianguloScreen extends StatefulWidget {
-  const TrianguloScreen({super.key});
+class TelaTrianguloScreen extends StatefulWidget {
+  const TelaTrianguloScreen({super.key});
  
   @override
-  State<TrianguloScreen> createState() => _TrianguloScreenState();
+  State<TelaTrianguloScreen> createState() => _TelaTrianguloScreenScreenState();
 }
  
-class _TrianguloScreenState extends State<TrianguloScreen> {
+class _TelaTrianguloScreenScreenState extends State<TelaTrianguloScreen> {
   final _formKey = GlobalKey<FormState>();
   final _baseController = TextEditingController();
   final _alturaController = TextEditingController();
