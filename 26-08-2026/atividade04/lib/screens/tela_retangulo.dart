@@ -5,14 +5,14 @@ import 'package:atividade04/models/model_poligono.dart';
 // ============================================================================
 // TELA
 // ============================================================================
-class TelaTrianguloScreen extends StatefulWidget {
-  const TelaTrianguloScreen({super.key});
+class TelaRetanguloScreen extends StatefulWidget {
+  const TelaRetanguloScreen({super.key});
  
   @override
-  State<TelaTrianguloScreen> createState() => _TelaTrianguloScreenScreenState();
+  State<TelaRetanguloScreen> createState() => _TelaRetanguloScreenScreenState();
 }
  
-class _TelaTrianguloScreenScreenState extends State<TelaTrianguloScreen> {
+class _TelaRetanguloScreenScreenState extends State<TelaRetanguloScreen> {
   final _formKey = GlobalKey<FormState>();
   final _baseController = TextEditingController();
   final _alturaController = TextEditingController();
