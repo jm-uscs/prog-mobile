@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Circulo'),
+                child: const Text('Calcular Circulo'),
               ),
 
               const SizedBox(height: 50),
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Losango'),
+                child: const Text('Calcular Losango'),
               ),
 
               const SizedBox(height: 50),
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Quadrado'),
+                child: const Text('Calcular Quadrado'),
               ),
 
               const SizedBox(height: 50),
@@ -109,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Retangulo'),
+                child: const Text('Calcular Retangulo'),
               ),
 
               const SizedBox(height: 50),
@@ -126,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Trapezio'),
+                child: const Text('Calcular Trapezio'),
               ),
 
               const SizedBox(height: 50),
@@ -143,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Tela Triangulo'),
+                child: const Text('Calcular Triangulo'),
               ),
             ],
           ),

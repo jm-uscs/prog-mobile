@@ -17,7 +17,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
   final _baseController = TextEditingController();
   final _alturaController = TextEditingController();
  
-  ResultadoTriangulo? _resultado;
+  ResultadoCirculo? _resultado;
  
   /// A = (base x altura) / 2
   void _calcularArea() {
@@ -29,7 +29,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
     final area = (base * altura) / 2;
  
     setState(() {
-      _resultado = ResultadoTriangulo(
+      _resultado = ResultadoCirculo(
         base: base,
         altura: altura,
         area: double.parse(area.toStringAsFixed(2)),
@@ -104,7 +104,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
     );
   }
  
-  Widget _buildResultado(ResultadoTriangulo r) {
+  Widget _buildResultado(ResultadoCirculo r) {
     return Card(
       elevation: 3,
       child: Padding(
