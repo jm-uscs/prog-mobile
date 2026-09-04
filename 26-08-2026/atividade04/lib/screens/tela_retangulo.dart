@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 //HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
 import 'package:atividade04/models/model_poligono.dart';
 
-// ============================================================================
-// TELA
-// ============================================================================
 class TelaRetanguloScreen extends StatefulWidget {
   const TelaRetanguloScreen({super.key});
  
@@ -26,7 +23,7 @@ class _TelaRetanguloScreenScreenState extends State<TelaRetanguloScreen> {
     final base = double.parse(_baseController.text.replaceAll(',', '.'));
     final altura = double.parse(_alturaController.text.replaceAll(',', '.'));
  
-    final area = (base * altura) / 2;
+    final area = base * altura;
  
     setState(() {
       _resultado = ResultadoRetangulo(
@@ -62,7 +59,7 @@ class _TelaRetanguloScreenScreenState extends State<TelaRetanguloScreen> {
           child: ListView(
             children: [
               const Text(
-                'A = (b . h) / 2',
+                'A = b . h',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),

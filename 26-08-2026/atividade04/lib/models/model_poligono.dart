@@ -1,11 +1,9 @@
 class ResultadoCirculo {
-  final double base;
-  final double altura;
+  final double raio;
   final double area;
 
   ResultadoCirculo({
-    required this.base,
-    required this.altura,
+    required this.raio,
     required this.area,
   });
 }
@@ -23,13 +21,11 @@ class ResultadoLosango {
 }
 
 class ResultadoQuadrado {
-  final double base;
-  final double altura;
+  final double lado;
   final double area;
 
   ResultadoQuadrado({
-    required this.base,
-    required this.altura,
+    required this.lado,
     required this.area,
   });
 }

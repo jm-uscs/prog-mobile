@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//Para algumas olgumas operacoes e a constante do Pi tem que usar essa biblioteca
+import 'dart:math' as math;
 //HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
 import 'package:atividade04/models/model_poligono.dart';
 
@@ -14,24 +16,22 @@ class TelaCirculoScreen extends StatefulWidget {
  
 class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _baseController = TextEditingController();
-  final _alturaController = TextEditingController();
+  final _raioController = TextEditingController();
+
  
   ResultadoCirculo? _resultado;
  
-  /// A = (base x altura) / 2
   void _calcularArea() {
     if (!_formKey.currentState!.validate()) return;
  
-    final base = double.parse(_baseController.text.replaceAll(',', '.'));
-    final altura = double.parse(_alturaController.text.replaceAll(',', '.'));
+    final raio = double.parse(_raioController.text.replaceAll(',', '.'));
+    final pi = math.pi;
  
-    final area = (base * altura) / 2;
+    final area = pi * math.pow(raio,2);
  
     setState(() {
       _resultado = ResultadoCirculo(
-        base: base,
-        altura: altura,
+        raio: raio,
         area: double.parse(area.toStringAsFixed(2)),
       );
     });
@@ -46,8 +46,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
  
   @override
   void dispose() {
-    _baseController.dispose();
-    _alturaController.dispose();
+    _raioController.dispose();
     super.dispose();
   }
  
@@ -67,23 +66,12 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
               ),
               const SizedBox(height: 20),
               TextFormField(
-                controller: _baseController,
+                controller: _raioController,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
-                  labelText: 'Base (b)',
+                  labelText: 'raio (r)',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.straighten),
-                ),
-                validator: _validarNumero,
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _alturaController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  labelText: 'Altura (h)',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.height),
                 ),
                 validator: _validarNumero,
               ),

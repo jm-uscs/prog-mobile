@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 //HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
 import 'package:atividade04/models/model_poligono.dart';
 
@@ -14,24 +15,20 @@ class TelaQuadradoScreen extends StatefulWidget {
  
 class _TelaQuadradoScreenScreenState extends State<TelaQuadradoScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _baseController = TextEditingController();
-  final _alturaController = TextEditingController();
+  final _ladoController = TextEditingController();
  
   ResultadoQuadrado? _resultado;
- 
-  /// A = (base x altura) / 2
+
   void _calcularArea() {
     if (!_formKey.currentState!.validate()) return;
  
-    final base = double.parse(_baseController.text.replaceAll(',', '.'));
-    final altura = double.parse(_alturaController.text.replaceAll(',', '.'));
- 
-    final area = (base * altura) / 2;
+    final lado = double.parse(_ladoController.text.replaceAll(',', '.'));
+    //Só fiz isso pra ficar bonito, creio que tanto faz kkkkk
+    final area = math.pow(lado, 2);
  
     setState(() {
       _resultado = ResultadoQuadrado(
-        base: base,
-        altura: altura,
+        lado: lado,
         area: double.parse(area.toStringAsFixed(2)),
       );
     });
@@ -46,15 +43,14 @@ class _TelaQuadradoScreenScreenState extends State<TelaQuadradoScreen> {
  
   @override
   void dispose() {
-    _baseController.dispose();
-    _alturaController.dispose();
+    _ladoController.dispose();
     super.dispose();
   }
  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Área do Triângulo')),
+      appBar: AppBar(title: const Text('Área do Quadrado')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -62,28 +58,17 @@ class _TelaQuadradoScreenScreenState extends State<TelaQuadradoScreen> {
           child: ListView(
             children: [
               const Text(
-                'A = (b . h) / 2',
+                'A = L²',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
               TextFormField(
-                controller: _baseController,
+                controller: _ladoController,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
-                  labelText: 'Base (b)',
+                  labelText: 'Lado (L)',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.straighten),
-                ),
-                validator: _validarNumero,
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _alturaController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  labelText: 'Altura (h)',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.height),
                 ),
                 validator: _validarNumero,
               ),
