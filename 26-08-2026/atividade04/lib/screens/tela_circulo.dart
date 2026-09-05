@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//Para algumas olgumas operacoes e a constante do Pi tem que usar essa biblioteca
+//Tem que usar essa biblioteca para algumas operacoes e a constante do Pi
 import 'dart:math' as math;
 //HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
 import 'package:atividade04/models/model_poligono.dart';
@@ -26,8 +26,8 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
  
     final raio = double.parse(_raioController.text.replaceAll(',', '.'));
     final pi = math.pi;
- 
-    final area = pi * math.pow(raio,2);
+    //Math.pow só pra não ter que usar operador de prioridade
+    final area = pi * math.pow(raio, 2);
  
     setState(() {
       _resultado = ResultadoCirculo(
@@ -53,7 +53,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Área do Triângulo')),
+      appBar: AppBar(title: const Text('Área do Circulo')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -61,7 +61,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
           child: ListView(
             children: [
               const Text(
-                'A = (b . h) / 2',
+                'A = π . r²',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
@@ -69,7 +69,7 @@ class _TelaCirculoScreenScreenState extends State<TelaCirculoScreen> {
                 controller: _raioController,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
-                  labelText: 'raio (r)',
+                  labelText: 'Raio (r)',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.straighten),
                 ),

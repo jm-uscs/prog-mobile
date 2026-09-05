@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//Tem que usar essa biblioteca para algumas operacoes e a constante do Pi
 import 'dart:math' as math;
 //HAHA!!! ERA SÓ IMPORTAR O MODEL, EU PASSEI TEMPO DEMAIS PRA DESCOBRIR ISSO.
 import 'package:atividade04/models/model_poligono.dart';

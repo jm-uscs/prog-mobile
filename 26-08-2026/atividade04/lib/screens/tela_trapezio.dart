@@ -54,7 +54,7 @@ class _TelaTrapezioScreenScreenState extends State<TelaTrapezioScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Área do Triângulo')),
+      appBar: AppBar(title: const Text('Área do Trapézio')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
